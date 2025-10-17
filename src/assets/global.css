@@ -17,7 +17,7 @@ html {
 
 #aside-container {
   position: sticky;
-  top: 0;
+  top: 24px;
 }
 
 #aside-container .nav {

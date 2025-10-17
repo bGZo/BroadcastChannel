@@ -22,82 +22,99 @@ const MASTODON = getEnv(import.meta.env, Astro, 'MASTODON')
 const BLUESKY = getEnv(import.meta.env, Astro, 'BLUESKY')
 
 const staticProxy = getEnv(import.meta.env, Astro, 'STATIC_PROXY') ?? '/static/'
+const channelSlug = getEnv(import.meta.env, Astro, 'CHANNEL')
+const channelSummaryRaw = channel?.description?.split('\n')?.[0]?.trim()
+const channelSummary = channelSummaryRaw?.length ? channelSummaryRaw : channelSlug ? `@${channelSlug}` : ''
 ---
 
-<div id="header">
-  <a href={SITE_URL} title={channel?.title}>
-    <img
-      src={channel?.avatar?.startsWith('http') ? staticProxy + channel?.avatar : voidFile.src}
-      alt={channel?.title}
-      loading="eager"
-      class="header-avatar"
-    />
-  </a>
-  <div class="header-title">
-    <a href={SITE_URL} class="site-title" title={channel?.title}>
-      {channel?.title}
-    </a>
+<div id="header" class="moments-header">
+  <div class="moments-header-info">
+    <div class="header-title">
+      <a href={SITE_URL} class="site-title" title={channel?.title}>
+        {channel?.title}
+      </a>
+    </div>
+    <div class="header-icons">
+      <a href={RSS_URL} target="_blank" rel="alternate" type="application/rss+xml" title="RSS Feed">
+        <img {...rss} alt="RSS" class="social-icon" width="1em" />
+      </a>
+
+      {
+        PODCASRT && (
+          <a href={PODCASRT} target="_blank" title="Podcast">
+            <img {...podcast} alt="Podcast" class="social-icon" width="1em" />
+          </a>
+        )
+      }
+
+      {
+        TWITTER && TWITTER.length > 0 && (
+          <a href={`https://twitter.com/${TWITTER}`} title="Twitter" target="_blank">
+            <img {...twitter} alt={`twitter.com/${TWITTER}`} class="social-icon" width="1em" />
+          </a>
+        )
+      }
+
+      {
+        GITHUB && GITHUB.length > 0 && (
+          <a href={`https://github.com/${GITHUB}`} title="GitHub" target="_blank">
+            <img {...github} alt={`github.com/${GITHUB}`} class="social-icon" width="1em" />
+          </a>
+        )
+      }
+
+      {
+        TELEGRAM && TELEGRAM.length > 0 && (
+          <a href={`https://t.me/${TELEGRAM}`} title="Telegram" target="_blank">
+            <img {...telegram} alt={`t.me/${TELEGRAM}`} class="social-icon" width="1em" />
+          </a>
+        )
+      }
+
+      {
+        DISCORD && DISCORD.length > 0 && (
+          <a href={DISCORD} title="Discord" target="_blank">
+            <img {...discord} alt="Discord Invite" class="social-icon" width="1em" />
+          </a>
+        )
+      }
+
+      {
+        MASTODON && MASTODON.length > 0 && (
+          <a href={`https://${MASTODON}`} title="Mastodon" target="_blank">
+            <img {...mastodon} alt={`@${MASTODON}`} class="social-icon" width="1em" />
+          </a>
+        )
+      }
+
+      {
+        BLUESKY && BLUESKY.length > 0 && (
+          <a href={`https://bsky.app/profile/${BLUESKY}`} title="BlueSky" target="_blank">
+            <img {...bluesky} alt={`@${BLUESKY}`} class="social-icon" width="1em" />
+          </a>
+        )
+      }
+    </div>
   </div>
-  <div class="header-icons">
-    <a href={RSS_URL} target="_blank" rel="alternate" type="application/rss+xml" title="RSS Feed">
-      <img {...rss} alt="RSS" class="social-icon" width="1em" />
+  <div class="moments-header-avatar">
+    <a href={SITE_URL} title={channel?.title} class="moments-header-avatar-link">
+      <img
+        src={channel?.avatar?.startsWith('http') ? staticProxy + channel?.avatar : voidFile.src}
+        alt={channel?.title}
+        loading="eager"
+        class="header-avatar"
+      />
     </a>
-
-    {
-      PODCASRT && (
-        <a href={PODCASRT} target="_blank" title="Podcast">
-          <img {...podcast} alt="Podcast" class="social-icon" width="1em" />
-        </a>
-      )
-    }
-
-    {
-      TWITTER && TWITTER.length > 0 && (
-        <a href={`https://twitter.com/${TWITTER}`} title="Twitter" target="_blank">
-          <img {...twitter} alt={`twitter.com/${TWITTER}`} class="social-icon" width="1em" />
-        </a>
-      )
-    }
-
-    {
-      GITHUB && GITHUB.length > 0 && (
-        <a href={`https://github.com/${GITHUB}`} title="GitHub" target="_blank">
-          <img {...github} alt={`github.com/${GITHUB}`} class="social-icon" width="1em" />
-        </a>
-      )
-    }
-
-    {
-      TELEGRAM && TELEGRAM.length > 0 && (
-        <a href={`https://t.me/${TELEGRAM}`} title="Telegram" target="_blank">
-          <img {...telegram} alt={`t.me/${TELEGRAM}`} class="social-icon" width="1em" />
-        </a>
-      )
-    }
-
-    {
-      DISCORD && DISCORD.length > 0 && (
-        <a href={DISCORD} title="Discord" target="_blank">
-          <img {...discord} alt="Discord Invite" class="social-icon" width="1em" />
-        </a>
-      )
-    }
-
-    {
-      MASTODON && MASTODON.length > 0 && (
-        <a href={`https://${MASTODON}`} title="Mastodon" target="_blank">
-          <img {...mastodon} alt={`@${MASTODON}`} class="social-icon" width="1em" />
-        </a>
-      )
-    }
-
-    {
-      BLUESKY && BLUESKY.length > 0 && (
-        <a href={`https://bsky.app/profile/${BLUESKY}`} title="BlueSky" target="_blank">
-          <img {...bluesky} alt={`@${BLUESKY}`} class="social-icon" width="1em" />
-        </a>
-      )
-    }
+    <!-- <div class="moments-header-meta"> -->
+    <!-- <span class="moments-header-name">{channel?.title}</span> -->
+    <!-- {
+        channelSummary && (
+          <span class="moments-header-desc">
+            {channelSummary}
+          </span>
+        )
+      } -->
+    <!-- </div> -->
   </div>
 </div>
 
@@ -124,6 +141,6 @@ const staticProxy = getEnv(import.meta.env, Astro, 'STATIC_PROXY') ?? '/static/'
   }
 
   .header-icons {
-    gap: 2px;
+    gap: 8px;
   }
 </style>
