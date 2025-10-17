@@ -147,10 +147,10 @@ function getPost($, item, { channel, staticProxy, index = 0 }) {
     text: content?.text(),
     content: [
       getReply($, item, { channel }),
+      content?.html(),
       getImages($, item, { staticProxy, id, index, title }),
       getVideo($, item, { staticProxy, id, index, title }),
       getAudio($, item, { staticProxy, id, index, title }),
-      content?.html(),
       getImageStickers($, item, { staticProxy, index }),
       getVideoStickers($, item, { staticProxy, index }),
       // $(item).find('.tgme_widget_message_sticker_wrap')?.html(),

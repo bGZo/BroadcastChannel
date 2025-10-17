@@ -1,22 +1,20 @@
 .moments-feed {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 0;
 }
 
 .item {
-  background-color: #ffffff;
-  border-radius: 18px;
-  padding: 20px 24px;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.06);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border-color);
 }
 
-.item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.08);
+.item:first-child {
+  padding-top: 0;
+}
+
+.item:last-child {
+  border-bottom: none;
 }
 
 .moment {
@@ -35,7 +33,6 @@
   height: 56px;
   border-radius: 12px;
   object-fit: cover;
-  box-shadow: var(--shadows);
 }
 
 .moment-content {
@@ -45,36 +42,17 @@
   gap: 12px;
 }
 
-.moment-meta {
+.moment-header {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
 }
 
 .moment-author {
   font-weight: 600;
-  color: #576b95;
+  color: var(--foreground-color);
   font-size: 15px;
-}
-
-.moment-time-link {
-  color: var(--secondary-color);
-  font-size: 12px;
-  text-decoration: none;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.moment-time-link:hover {
-  color: var(--highlight-color);
-}
-
-.moment-time {
-  font-style: normal;
 }
 
 .moment-text {
@@ -83,6 +61,10 @@
   line-height: 1.7;
   color: var(--foreground-color);
 }
+
+/* .moment-text > * + * {
+  margin-top: 12px;
+} */
 
 .moment-text :global(a) {
   color: #576b95;
@@ -97,6 +79,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+  margin-top: 4px;
 }
 
 .moment-tag {
@@ -117,9 +100,33 @@
   text-decoration: none;
 }
 
+.moment-footer {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.moment-time-link {
+  color: var(--secondary-color);
+  font-size: 12px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.moment-time-link:hover {
+  color: var(--highlight-color);
+}
+
+.moment-time {
+  font-style: normal;
+}
+
 .moment-comments {
+  margin-top: 16px;
   padding-top: 12px;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px dashed var(--border-color);
 }
 
 .moment-comments iframe,
@@ -356,8 +363,7 @@
 
 @media screen and (max-width: 720px) {
   .item {
-    padding: 16px 18px;
-    border-radius: 16px;
+    padding: 20px 0;
   }
 
   .moment {

@@ -23,6 +23,8 @@ const avatarSrc = channelInfo?.avatar?.startsWith('http')
 const channelName = channelInfo?.title ?? getEnv(import.meta.env, Astro, 'CHANNEL_NAME') ?? channel ?? 'Channel'
 
 const datetime = dayjs(post.datetime).tz(timezone)
+const dateLabel = datetime.format('YYYY年MM月DD日 HH:mm dddd')
+const timeTitle = datetime.format('YYYY/MM/DD HH:mm')
 const timeago = datetime.isBefore(dayjs().subtract(1, 'w')) ? datetime.format('HH:mm · ll · ddd') : datetime.fromNow()
 ---
 
@@ -32,11 +34,8 @@ const timeago = datetime.isBefore(dayjs().subtract(1, 'w')) ? datetime.format('H
       <img src={avatarSrc} alt={channelName} loading={isItem ? 'eager' : 'lazy'} />
     </figure>
     <div class="moment-content">
-      <div class="moment-meta">
+      <div class="moment-header">
         <span class="moment-author">{channelName}</span>
-        <a href={`${SITE_URL}posts/${post.id}`} title={post.datetime} class="moment-time-link">
-          <time datetime={post.datetime} title={timeago} class="moment-time">{timeago}</time>
-        </a>
       </div>
       {post.content.length > 0 && <div class={`moment-text content`} set:html={post.content} />}
       {
@@ -50,6 +49,12 @@ const timeago = datetime.isBefore(dayjs().subtract(1, 'w')) ? datetime.format('H
           </div>
         )
       }
+
+      <div class="moment-footer">
+        <a href={`${SITE_URL}posts/${post.id}`} title={timeago} class="moment-time-link">
+          <time datetime={post.datetime} title={timeTitle} class="moment-time">{dateLabel}</time>
+        </a>
+      </div>
 
       {
         COMMENTS && isItem && (
