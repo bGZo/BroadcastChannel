@@ -138,6 +138,7 @@
   word-break: break-word;
 
   .image-list-container {
+    margin-top: 16px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: masonry;
