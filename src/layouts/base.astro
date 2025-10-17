@@ -146,6 +146,11 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
               {GOOGLE_SEARCH_SITE ? <input type="hidden" name="as_sitesearch" value={GOOGLE_SEARCH_SITE} /> : null}
               <input type="text" name="q" placeholder="Search" />
             </form>
+            {
+              channel?.descriptionHTML && channel?.descriptionHTML.length > 0 && (
+                <div class="aside-description" set:html={channel?.descriptionHTML} />
+              )
+            }
             <div class="copyright-wrap">
               Powered by
               <a

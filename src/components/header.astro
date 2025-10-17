@@ -118,24 +118,7 @@ const channelSummary = channelSummaryRaw?.length ? channelSummaryRaw : channelSl
   </div>
 </div>
 
-{
-  channel?.descriptionHTML && channel?.descriptionHTML.length > 0 && (
-    <div class="text-box" id="site-intro" set:html={channel?.descriptionHTML} />
-  )
-}
-
 <style>
-  #site-intro {
-    color: var(--secondary-color);
-    background-color: var(--code-background-color);
-    word-break: break-word;
-
-    & :global(.emoji) {
-      font-style: normal;
-      margin-right: 2px;
-    }
-  }
-
   .social-icon {
     padding: 4px;
   }

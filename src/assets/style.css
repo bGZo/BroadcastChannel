@@ -265,16 +265,6 @@ hr {
   line-height: 24px;
 }
 
-#site-intro {
-  padding: 10px 20px 10px 20px;
-  background-color: #fff;
-  font-size: 16px;
-  line-height: 1.6;
-  border-radius: var(--box-border-radius);
-  box-shadow: var(--shadows);
-  margin-bottom: 20px;
-}
-
 .section-title {
   font-size: 16px;
   font-weight: 600;
@@ -364,24 +354,6 @@ audio::-webkit-media-controls-panel {
   padding-bottom: 30px;
 }
 
-.text-box {
-  background: var(--cell-background-color);
-  border-radius: 20px;
-  padding: 20px 24px;
-  font-size: 15px;
-  line-height: 1.7;
-  margin-top: 24px;
-  color: var(--secondary-color);
-}
-
-.text-box p:first-child {
-  margin-top: 0px;
-}
-
-.text-box p:last-child {
-  margin-bottom: 0px;
-}
-
 #aside-container {
   padding: 32px 24px;
   width: 260px;
@@ -398,6 +370,22 @@ audio::-webkit-media-controls-panel {
   display: flex;
   flex-direction: column;
   gap: 12px;
+}
+
+.aside-description {
+  margin-top: 20px;
+  background: var(--cell-background-color);
+  padding: 16px 18px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--secondary-color);
+  word-break: break-word;
+}
+
+.aside-description :global(.emoji) {
+  font-style: normal;
+  margin-right: 2px;
 }
 
 .nav-item {
@@ -902,7 +890,7 @@ li:has(input[type='checkbox']:checked:disabled)::before {
     margin-bottom: 0;
   }
 
-  #site-intro {
+  .aside-description {
     margin-top: 16px;
   }
 }
