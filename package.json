@@ -45,7 +45,8 @@
     "postcss-nesting": "^13.0.0",
     "prettier-plugin-astro": "^0.14.1",
     "simple-git-hooks": "^2.11.1",
-    "std-env": "^3.7.0"
+    "std-env": "^3.7.0",
+    "typescript": "^5.9.3"
   },
   "simple-git-hooks": {
     "pre-commit": "pnpm lint-staged"
