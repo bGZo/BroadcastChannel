@@ -3,13 +3,13 @@
   "type": "module",
   "version": "0.1.7",
   "private": true,
-  "packageManager": "pnpm@9.9.0",
+  "packageManager": "bun@1.2.23",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
+    "dev": "bunx astro dev",
+    "start": "bunx astro dev",
+    "build": "bunx astro build",
+    "preview": "bunx astro preview",
+    "astro": "bunx astro",
     "postinstall": "test -d .git && true"
   },
   "dependencies": {
