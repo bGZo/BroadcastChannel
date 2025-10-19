@@ -102,6 +102,7 @@
     background: var(--cell-background-color);
     border-left: 3px solid var(--highlight-color);
     padding: 10px 12px;
+    color: grey;
   }
 
   .tgme_widget_message_sticker {
