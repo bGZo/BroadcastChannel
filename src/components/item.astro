@@ -28,21 +28,21 @@ const timeTitle = datetime.format('YYYY/MM/DD HH:mm')
 const timeago = datetime.isBefore(dayjs().subtract(1, 'w')) ? datetime.format('HH:mm · ll · ddd') : datetime.fromNow()
 ---
 
-<div class="item" style={{ 'view-transition-name': `post-${post.id}` }}>
-  <div class="moment">
-    <figure class="moment-avatar">
-      <img src={avatarSrc} alt={channelName} loading={isItem ? 'eager' : 'lazy'} />
+<div class="item py-6 border-b border-[var(--border-color)] first:pt-0 last:border-b-0" style={{ 'view-transition-name': `post-${post.id}` }}>
+  <div class="moment flex items-start gap-4">
+    <figure class="moment-avatar m-0 flex-none">
+      <img src={avatarSrc} alt={channelName} loading={isItem ? 'eager' : 'lazy'} class="w-14 h-14 rounded-xl object-cover" />
     </figure>
-    <div class="moment-content">
-      <div class="moment-header">
-        <span class="moment-author">{channelName}</span>
+    <div class="moment-content flex-1 flex flex-col gap-3">
+      <div class="moment-header flex items-center gap-2 mb-1">
+        <span class="moment-author text-base font-semibold text-[var(--foreground-color)]">{channelName}</span>
       </div>
-      {post.content.length > 0 && <div class={`moment-text content`} set:html={post.content} />}
+      {post.content.length > 0 && <div class={`moment-text content prose prose-gray max-w-none m-0 text-sm leading-relaxed text-[var(--foreground-color)] break-words`} set:html={post.content} />}
       {
         post.tags.length > 0 && (
-          <div class="moment-tags">
+          <div class="moment-tags flex gap-2 flex-wrap mt-1">
             {post.tags.map((tag) => (
-              <a href={`/search/%23${tag}`} title={tag} class="moment-tag">
+              <a href={`/search/%23${tag}`} title={tag} class="moment-tag bg-gray-100 text-[var(--link-color)] rounded-full px-3 py-1 text-xs no-underline transition-all duration-200 hover:bg-[rgba(7,193,96,0.12)] hover:text-[var(--highlight-color)] hover:no-underline">
                 #{tag}
               </a>
             ))}
@@ -50,15 +50,15 @@ const timeago = datetime.isBefore(dayjs().subtract(1, 'w')) ? datetime.format('H
         )
       }
 
-      <div class="moment-footer">
-        <a href={`${SITE_URL}posts/${post.id}`} title={timeago} class="moment-time-link">
-          <time datetime={post.datetime} title={timeTitle} class="moment-time">{dateLabel}</time>
+      <div class="moment-footer flex items-center gap-2 mt-3 justify-start">
+        <a href={`${SITE_URL}posts/${post.id}`} title={timeago} class="moment-time-link text-[var(--secondary-color)] text-xs no-underline inline-flex items-center py-1 hover:text-[var(--highlight-color)]">
+          <time datetime={post.datetime} title={timeTitle} class="moment-time text-sm text-[var(--secondary-color)] font-normal">{dateLabel}</time>
         </a>
       </div>
 
       {
         COMMENTS && isItem && (
-          <div class="moment-comments">
+          <div class="moment-comments mt-4 pt-3 border-t border-dashed border-[var(--border-color)]">
             <script
               is:inline
               async

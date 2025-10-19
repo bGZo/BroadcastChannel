@@ -1,139 +1,3 @@
-.moments-feed {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.item {
-  padding: 24px 0;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.item:first-child {
-  padding-top: 0;
-}
-
-.item:last-child {
-  border-bottom: none;
-}
-
-.moment {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.moment-avatar {
-  margin: 0;
-  flex: 0 0 auto;
-}
-
-.moment-avatar img {
-  width: 56px;
-  height: 56px;
-  border-radius: 12px;
-  object-fit: cover;
-}
-
-.moment-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.moment-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 4px;
-}
-
-.moment-author {
-  font-weight: 600;
-  color: var(--foreground-color);
-  font-size: 15px;
-}
-
-.moment-text {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--foreground-color);
-}
-
-/* .moment-text > * + * {
-  margin-top: 12px;
-} */
-
-.moment-text :global(a) {
-  color: #576b95;
-  text-decoration: none;
-}
-
-.moment-text :global(a:hover) {
-  text-decoration: underline;
-}
-
-.moment-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 4px;
-}
-
-.moment-tag {
-  background: #f2f4f5;
-  color: #576b95;
-  border-radius: 999px;
-  padding: 4px 12px;
-  font-size: 12px;
-  text-decoration: none;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.moment-tag:hover {
-  background: rgba(7, 193, 96, 0.12);
-  color: var(--highlight-color);
-  text-decoration: none;
-}
-
-.moment-footer {
-  margin-top: 12px;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.moment-time-link {
-  color: var(--secondary-color);
-  font-size: 12px;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  padding: 4px 0;
-}
-
-.moment-time-link:hover {
-  color: var(--highlight-color);
-}
-
-.moment-time {
-  font-style: normal;
-}
-
-.moment-comments {
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px dashed var(--border-color);
-}
-
-.moment-comments iframe,
-.moment-comments script {
-  width: 100%;
-}
-
 .content {
   word-break: break-word;
 
@@ -176,7 +40,6 @@
     background: var(--cell-background-color);
     border-left: 3px solid var(--highlight-color);
     padding: 10px 12px;
-    border-radius: var(--box-border-radius);
 
     .link_preview_title {
       display: block;
@@ -239,7 +102,6 @@
     background: var(--cell-background-color);
     border-left: 3px solid var(--highlight-color);
     padding: 10px 12px;
-    border-radius: var(--box-border-radius);
   }
 
   .tgme_widget_message_sticker {

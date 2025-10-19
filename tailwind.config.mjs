@@ -2,6 +2,7 @@ import { defineConfig } from 'tailwindcss'
 
 
 export default defineConfig({
+  darkMode: 'class',
   content: [
     './src/**/*.{astro,html,js,jsx,ts,tsx,md,mdx}',
     './public/**/*.{html,js}',
@@ -44,5 +45,6 @@ export default defineConfig({
     },
   },
   plugins: [
+    require('@tailwindcss/typography'),
   ],
 })

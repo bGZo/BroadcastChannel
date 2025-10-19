@@ -73,6 +73,20 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#f4f1ec" />
+    <!-- Theme initialization script - run synchronously to avoid FOUC -->
+    <script is:inline>
+      (function () {
+        try {
+          const stored = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (stored === 'dark' || (!stored && prefersDark)) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) { /* ignore */ }
+      })();
+    </script>
     <link rel="alternate" type="application/rss+xml" title={`${RSS_PREFIX}${channel?.title}`} href={RSS_URL} />
     <style is:inline>
       @view-transition {
@@ -91,17 +105,17 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
     <Fragment set:html={HEADER_INJECT} />
   </head>
 
-  <body>
-    <div id="wrapper">
-      <div id="container">
-        <div id="main-container">
+  <body class="bg-[var(--background-color)] text-[var(--foreground-color)] font-sans">
+    <div id="wrapper" class="min-h-screen px-6 py-10 bg-[var(--background-color)]">
+      <div id="container" class="w-full max-w-5xl mx-auto flex flex-col md:flex-row items-start gap-6 md:gap-8">
+        <div id="main-container" class="flex-1 bg-[var(--background-color)] rounded-3xl p-8 mr-0 border-r-0 shadow-card">
           <slot />
         </div>
-        <div id="aside-container">
+        <div id="aside-container" class="w-full md:w-60 min-w-0 md:min-w-60 p-6 md:p-8 bg-[var(--cell-background-color)] rounded-3xl shadow-card">
           <slot name="aside">
             <div class="nav">
               <div class="nav-item">
-                <a href={SITE_URL} title={channel?.title} class={`nav-link ${pathname === '/' ? 'current' : ''}`}>
+                <a href={SITE_URL} title={channel?.title} class={`nav-link flex-1 no-underline text-[var(--foreground-color)] px-3.5 py-2.5 rounded-2xl inline-block transition-all duration-150 hover:bg-white/90 hover:text-[var(--highlight-color)] hover:shadow-nav-hover dark:hover:bg-gray-700/90 ${pathname === '/' ? 'current' : ''}`}>
                   Home
                 </a>
               </div>
@@ -111,7 +125,7 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
                     <a
                       href={`${SITE_URL}tags`}
                       title="Tags"
-                      class={`nav-link ${pathname === '/tags' ? 'current' : ''}`}
+                      class={`nav-link flex-1 no-underline text-foreground px-3.5 py-2.5 rounded-2xl inline-block transition-all duration-150 ${pathname === '/tags' ? 'current' : ''}`}
                     >
                       Tags
                     </a>
@@ -124,7 +138,7 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
                     <a
                       href={`${SITE_URL}links`}
                       title="Links"
-                      class={`nav-link ${pathname === '/links' ? 'current' : ''}`}
+                      class={`nav-link flex-1 no-underline text-foreground px-3.5 py-2.5 rounded-2xl inline-block transition-all duration-150 ${pathname === '/links' ? 'current' : ''}`}
                     >
                       Links
                     </a>
@@ -134,12 +148,17 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
               {
                 navs.map((nav) => (
                   <div class="nav-item">
-                    <a href={nav.href} title={nav.title} target="_blank" rel="noopener" class="nav-link">
+                    <a href={nav.href} title={nav.title} target="_blank" rel="noopener" class="nav-link flex-1 no-underline text-foreground px-3.5 py-2.5 rounded-2xl inline-block transition-all duration-150">
                       {nav.title}
                     </a>
                   </div>
                 ))
               }
+              <div class="nav-item">
+                <button id="theme-toggle" class="nav-link flex-1 no-underline text-foreground px-3.5 py-2.5 rounded-2xl inline-block transition-all duration-150">
+                  🌙
+                </button>
+              </div>
             </div>
             <input class="search-icon" name="icon" type="checkbox" placeholder="Search" />
             <form class="search-form" action={searchAction} method="get">
@@ -148,7 +167,7 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
             </form>
             {
               channel?.descriptionHTML && channel?.descriptionHTML.length > 0 && (
-                <div class="aside-description" set:html={channel?.descriptionHTML} />
+                <div class="aside-description text-[12px] text-gray-600 dark:text-gray-400  p-3 rounded-lg shadow-sm leading-5" set:html={channel?.descriptionHTML} />
               )
             }
             <div class="copyright-wrap">
@@ -171,5 +190,44 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
       <img {...backToTopIcon} alt="Back to Top" />
     </a>
     <Fragment set:html={FOOTER_INJECT} />
+    <script>
+      const themeToggle = document.getElementById('theme-toggle');
+      const html = document.documentElement;
+
+      // Check for saved theme preference or default to light mode
+      const currentTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+      if (currentTheme === 'dark') {
+        html.classList.add('dark');
+        themeToggle.textContent = '☀️';
+      } else {
+        themeToggle.textContent = '🌙';
+      }
+
+      themeToggle.addEventListener('click', () => {
+        if (html.classList.contains('dark')) {
+          html.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+          themeToggle.textContent = '🌙';
+        } else {
+          html.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+          themeToggle.textContent = '☀️';
+        }
+      });
+
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+          if (e.matches) {
+            html.classList.add('dark');
+            themeToggle.textContent = '☀️';
+          } else {
+            html.classList.remove('dark');
+            themeToggle.textContent = '🌙';
+          }
+        }
+      });
+    </script>
   </body>
 </html>

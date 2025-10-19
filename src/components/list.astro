@@ -16,29 +16,29 @@ const afterCursor = posts[0]?.id
   <slot name="header">
     <Header channel={channel} />
   </slot>
-  <div class="items moments-feed">
+  <div class="items mt-8 flex flex-col gap-5 moments-feed">
     {posts.map((post) => <Item post={post} channel={channel} isItem={isItem} />)}
   </div>
 
-  <div class="pages-container">
+  <div class="pages-container flex items-center mt-5 mb-5">
     {
       before && beforeCursor > 1 ? (
-        <a href={`${SITE_URL}before/${beforeCursor}`} title="Before" class="page">
+        <a href={`${SITE_URL}before/${beforeCursor}`} title="Before" class="page text-[var(--secondary-color)] px-3.5 py-1.5 text-sm font-medium rounded-3xl border border-[var(--secondary-color)] hover:text-[var(--link-color)] hover:no-underline">
           Before
         </a>
       ) : (
-        <span class="page-placeholder">&nbsp;</span>
+        <span class="page-placeholder w-8">&nbsp;</span>
       )
     }
 
-    <div class="pages-info"></div>
+    <div class="pages-info flex-1 text-center align-middle text-[var(--secondary-color)] font-medium text-xs"></div>
     {
       after && afterCursor ? (
-        <a href={`${SITE_URL}after/${afterCursor}`} title="After" class="page">
+        <a href={`${SITE_URL}after/${afterCursor}`} title="After" class="page text-[var(--secondary-color)] px-3.5 py-1.5 text-sm font-medium rounded-3xl border border-[var(--secondary-color)] hover:text-[var(--link-color)] hover:no-underline">
           After
         </a>
       ) : (
-        <span class="page-placeholder">&nbsp;</span>
+        <span class="page-placeholder w-8">&nbsp;</span>
       )
     }
   </div>

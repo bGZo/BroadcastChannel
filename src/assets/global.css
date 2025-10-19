@@ -57,7 +57,6 @@ html {
 
 .search-form {
   display: none;
-  background: var(--code-background-color);
   color: var(--secondary-color);
   padding: 8px;
   border-radius: var(--box-border-radius);
@@ -155,5 +154,52 @@ html {
       opacity: 0.9;
       pointer-events: auto;
     }
+  }
+}
+
+ul:has(input[type='checkbox']) {
+  padding-inline-start: 0px;
+}
+
+li input[type='checkbox'] {
+  display: none;
+}
+
+li:has(input[type='checkbox']) {
+  list-style-type: none;
+  margin-left: 0px;
+  pointer-events: none;
+}
+
+li:has(input[type='checkbox']:not(:checked):disabled)::before {
+  background-image: url('./circle.svg');
+  background-repeat: no-repeat;
+  content: '';
+  display: inline-block;
+  vertical-align: text-top;
+  width: 1.25em;
+  height: 1em;
+  background-size: 1em 1em;
+  margin-top: 2px;
+  filter: var(--icon-hover-filter);
+  pointer-events: all;
+}
+
+li:has(input[type='checkbox']:checked:disabled)::before {
+  background-image: url('./checkmark.circle.fill.svg');
+  background-repeat: no-repeat;
+  content: '';
+  display: inline-block;
+  vertical-align: text-top;
+  width: 1.25em;
+  height: 1em;
+  background-size: 1em 1em;
+  margin-top: 1px;
+  pointer-events: all;
+}
+
+.aside-description {
+  i {
+    font-style: normal;
   }
 }

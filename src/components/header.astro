@@ -27,22 +27,22 @@ const channelSummaryRaw = channel?.description?.split('\n')?.[0]?.trim()
 const channelSummary = channelSummaryRaw?.length ? channelSummaryRaw : channelSlug ? `@${channelSlug}` : ''
 ---
 
-<div id="header" class="moments-header">
-  <div class="moments-header-info">
-    <div class="header-title">
+<div id="header" class="relative grid grid-cols-1 md:grid-cols-[1fr_auto] items-center md:items-end p-6 md:p-8 mb-6 rounded-3xl overflow-hidden" style="background: var(--header-gradient);">
+  <div class="moments-header-info relative z-10 flex flex-col gap-4">
+    <div class="header-title text-3xl font-bold text-[var(--foreground-color)] m-0">
       <a href={SITE_URL} class="site-title" title={channel?.title}>
         {channel?.title}
       </a>
     </div>
-    <div class="header-icons gap-2 text-2xl">
+    <div class="header-icons flex items-center gap-2 flex-wrap">
       <a href={RSS_URL} target="_blank" rel="alternate" type="application/rss+xml" title="RSS Feed">
-        <img {...rss} alt="RSS" class="social-icon" width="1em" />
+        <img {...rss} alt="RSS" class="social-icon w-6 h-6 p-1" />
       </a>
 
       {
         PODCASRT && (
           <a href={PODCASRT} target="_blank" title="Podcast">
-            <img {...podcast} alt="Podcast" class="social-icon" width="1em" />
+            <img {...podcast} alt="Podcast" class="social-icon w-6 h-6 p-1" />
           </a>
         )
       }
@@ -50,7 +50,7 @@ const channelSummary = channelSummaryRaw?.length ? channelSummaryRaw : channelSl
       {
         TWITTER && TWITTER.length > 0 && (
           <a href={`https://twitter.com/${TWITTER}`} title="Twitter" target="_blank">
-            <img {...twitter} alt={`twitter.com/${TWITTER}`} class="social-icon" width="1em" />
+            <img {...twitter} alt={`twitter.com/${TWITTER}`} class="social-icon w-6 h-6 p-1" />
           </a>
         )
       }
@@ -58,7 +58,7 @@ const channelSummary = channelSummaryRaw?.length ? channelSummaryRaw : channelSl
       {
         GITHUB && GITHUB.length > 0 && (
           <a href={`https://github.com/${GITHUB}`} title="GitHub" target="_blank">
-            <img {...github} alt={`github.com/${GITHUB}`} class="social-icon" width="1em" />
+            <img {...github} alt={`github.com/${GITHUB}`} class="social-icon w-6 h-6 p-1" />
           </a>
         )
       }
@@ -66,7 +66,7 @@ const channelSummary = channelSummaryRaw?.length ? channelSummaryRaw : channelSl
       {
         TELEGRAM && TELEGRAM.length > 0 && (
           <a href={`https://t.me/${TELEGRAM}`} title="Telegram" target="_blank">
-            <img {...telegram} alt={`t.me/${TELEGRAM}`} class="social-icon" width="1em" />
+            <img {...telegram} alt={`t.me/${TELEGRAM}`} class="social-icon w-6 h-6 p-1" />
           </a>
         )
       }
@@ -74,7 +74,7 @@ const channelSummary = channelSummaryRaw?.length ? channelSummaryRaw : channelSl
       {
         DISCORD && DISCORD.length > 0 && (
           <a href={DISCORD} title="Discord" target="_blank">
-            <img {...discord} alt="Discord Invite" class="social-icon" width="1em" />
+            <img {...discord} alt="Discord Invite" class="social-icon w-6 h-6 p-1" />
           </a>
         )
       }
@@ -82,7 +82,7 @@ const channelSummary = channelSummaryRaw?.length ? channelSummaryRaw : channelSl
       {
         MASTODON && MASTODON.length > 0 && (
           <a href={`https://${MASTODON}`} title="Mastodon" target="_blank">
-            <img {...mastodon} alt={`@${MASTODON}`} class="social-icon" width="1em" />
+            <img {...mastodon} alt={`@${MASTODON}`} class="social-icon w-6 h-6 p-1" />
           </a>
         )
       }
@@ -90,19 +90,19 @@ const channelSummary = channelSummaryRaw?.length ? channelSummaryRaw : channelSl
       {
         BLUESKY && BLUESKY.length > 0 && (
           <a href={`https://bsky.app/profile/${BLUESKY}`} title="BlueSky" target="_blank">
-            <img {...bluesky} alt={`@${BLUESKY}`} class="social-icon" width="1em" />
+            <img {...bluesky} alt={`@${BLUESKY}`} class="social-icon w-6 h-6 p-1" />
           </a>
         )
       }
     </div>
   </div>
-  <div class="moments-header-avatar">
-    <a href={SITE_URL} title={channel?.title} class="moments-header-avatar-link">
+  <div class="moments-header-avatar relative z-10 flex flex-col items-start md:items-center gap-3">
+    <a href={SITE_URL} title={channel?.title} class="moments-header-avatar-link inline-flex">
       <img
         src={channel?.avatar?.startsWith('http') ? staticProxy + channel?.avatar : voidFile.src}
         alt={channel?.title}
         loading="eager"
-        class="header-avatar"
+        class="header-avatar w-20 md:w-24 h-20 md:h-24 rounded-xl md:rounded-2xl border-4 border-white shadow-lg block object-cover"
       />
     </a>
     <!-- <div class="moments-header-meta"> -->
@@ -119,11 +119,11 @@ const channelSummary = channelSummaryRaw?.length ? channelSummaryRaw : channelSl
 </div>
 
 <style>
-  .social-icon {
-    padding: 4px;
-  }
-
-  .header-icons {
-    gap: 8px;
+  #header::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(7, 193, 96, 0.15), transparent 55%);
+    pointer-events: none;
   }
 </style>
