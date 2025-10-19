@@ -37,7 +37,7 @@ const timeago = datetime.isBefore(dayjs().subtract(1, 'w')) ? datetime.format('H
       <div class="moment-header flex items-center gap-2 mb-1">
         <span class="moment-author text-base font-semibold text-[var(--foreground-color)]">{channelName}</span>
       </div>
-      {post.content.length > 0 && <div class={`moment-text content prose prose-gray max-w-none m-0 text-sm leading-relaxed text-[var(--foreground-color)] break-words`} set:html={post.content} />}
+      {post.content.length > 0 && <div class={`moment-text content prose prose-green max-w-none m-0 text-sm leading-relaxed text-[var(--foreground-color)] break-words`} set:html={post.content} />}
       {
         post.tags.length > 0 && (
           <div class="moment-tags flex gap-2 flex-wrap mt-1">
