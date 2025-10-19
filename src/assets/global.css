@@ -27,34 +27,6 @@ html {
   top: unset;
 }
 
-.search-icon {
-  position: absolute;
-  top: 20px;
-  right: 0px;
-  width: 24px;
-  height: 24px;
-  padding: 4px;
-  appearance: none;
-  outline: none;
-
-  &:after {
-    content: '🔍';
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: var(--background-color);
-    text-align: center;
-    vertical-align: middle;
-    line-height: 24px;
-  }
-}
-
-.search-icon:checked + .search-form {
-  display: block !important;
-}
-
 .search-form {
   display: none;
   color: var(--secondary-color);
@@ -83,9 +55,33 @@ html {
   padding: 8px;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 767px) {
   #aside-container {
-    height: 100vh;
+    position: static;
+  }
+
+  #aside-container .nav {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .aside-description {
+    display: none;
+  }
+
+  .search-icon {
+    position: static;
+  }
+  
+  #header {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #aside-container {
     height: 100svh;
     overflow-y: auto;
   }

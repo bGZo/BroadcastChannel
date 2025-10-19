@@ -107,8 +107,8 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
 
   <body class="bg-[var(--background-color)] text-[var(--foreground-color)] font-sans">
     <div id="wrapper" class="min-h-screen px-6 py-10 bg-[var(--background-color)]">
-      <div id="container" class="w-full max-w-5xl mx-auto flex flex-col md:flex-row items-start gap-6 md:gap-8">
-        <div id="main-container" class="flex-1 bg-[var(--background-color)] rounded-3xl p-8 mr-0 border-r-0 shadow-card">
+      <div id="container" class="w-full max-w-5xl mx-auto flex flex-col-reverse md:flex-row items-start gap-6 md:gap-8">
+        <div id="main-container" class="flex-1 bg-[var(--background-color)] rounded-3xl p-8 mr-0 border-r-0 shadow-card w-full">
           <slot />
         </div>
         <div id="aside-container" class="w-full md:w-60 min-w-0 md:min-w-60 p-6 md:p-8 bg-[var(--cell-background-color)] rounded-3xl shadow-card">
@@ -159,8 +159,12 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
                   🌙
                 </button>
               </div>
+              <div class="nav-item">
+                <button class="search-icon nav-link flex-1 no-underline text-foreground px-3.5 py-2.5 rounded-2xl inline-block transition-all duration-150">
+                  🔍
+                </button>
+              </div>
             </div>
-            <input class="search-icon" name="icon" type="checkbox" placeholder="Search" />
             <form class="search-form" action={searchAction} method="get">
               {GOOGLE_SEARCH_SITE ? <input type="hidden" name="as_sitesearch" value={GOOGLE_SEARCH_SITE} /> : null}
               <input type="text" name="q" placeholder="Search" />
@@ -226,6 +230,19 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
             html.classList.remove('dark');
             themeToggle.textContent = '🌙';
           }
+        }
+      });
+    </script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const searchIcon = document.querySelector('.search-icon');
+        const searchForm = document.querySelector('.search-form');
+        let isSearchVisible = false;
+        if (searchIcon && searchForm) {
+          searchIcon.addEventListener('click', function() {
+            isSearchVisible = !isSearchVisible;
+            (searchForm as HTMLElement).style.display = isSearchVisible ? 'block' : 'none';
+          });
         }
       });
     </script>

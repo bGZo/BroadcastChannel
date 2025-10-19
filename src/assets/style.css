@@ -154,3 +154,17 @@ html.dark .nav-link.current {
 .shadow-card {
   box-shadow: var(--shadows);
 }
+
+@media screen and (max-width: 767px) {
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    column-count: unset;
+    column-rule: none;
+    column-gap: unset;
+  }
+
+  .tag-cloud-item {
+    padding-left: 0;
+  }
+}
