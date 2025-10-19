@@ -23,14 +23,14 @@ const staticProxy = getEnv(import.meta.env, Astro, 'STATIC_PROXY') ?? '/static/'
 ---
 
 <List channel={channel} before={false} after={false} isItem={true}>
-  <div slot="header" id="breadcrumb">
+  <div slot="header" id="breadcrumb" class="py-2.5 mb-5 font-semibold flex items-center">
     <img
       src={channel?.avatar?.startsWith('http') ? staticProxy + channel?.avatar : voidFile.src}
       alt={channel?.title}
       loading="eager"
-      class="breadcrumb-avatar"
+      class="breadcrumb-avatar w-5 h-5 rounded-full border-2 border-white shadow block"
     />
-    <div class="breadcrumb-title">
+    <div class="breadcrumb-title flex-1 text-sm ml-2.5">
       <a href={SITE_URL} class="site-title" title={channel?.title}>
         {channel.title}
       </a>
