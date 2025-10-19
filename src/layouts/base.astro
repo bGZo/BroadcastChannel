@@ -244,6 +244,12 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
             (searchForm as HTMLElement).style.display = isSearchVisible ? 'block' : 'none';
           });
         }
+
+        // Add controls to videos
+        const videos = document.querySelectorAll('.link_preview_video');
+        videos.forEach(video => {
+          (video as HTMLVideoElement).controls = true;
+        });
       });
     </script>
   </body>

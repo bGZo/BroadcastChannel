@@ -17,6 +17,19 @@ html {
   transition: 0.2s ease;
 }
 
+.link_preview_video_wrap {
+  position: relative;
+  padding-top: 177.5%;
+}
+
+.link_preview_video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 #aside-container {
   position: sticky;
   top: 24px;
