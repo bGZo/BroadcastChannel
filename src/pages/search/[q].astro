@@ -3,12 +3,14 @@ import List from '../../components/list.astro'
 import { getChannelInfo } from '../../lib/telegram'
 
 const q = Astro.url.searchParams.get('q') || Astro.params.q
+const decodedQ = q ? decodeURIComponent(q) : '' 
+// Add null check to handle undefined
 const channel = await getChannelInfo(Astro, {
-  q,
+  q: decodedQ,
 })
 
 channel.seo = {
-  title: `${q}`,
+  title: `${decodedQ}`,
 }
 ---
 
