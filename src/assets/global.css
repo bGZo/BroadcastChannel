@@ -212,3 +212,19 @@ li:has(input[type='checkbox']:checked:disabled)::before {
     font-style: normal;
   }
 }
+
+#header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(7, 193, 96, 0.15), transparent 55%);
+  pointer-events: none;
+}
+
+.social-icon {
+  filter: var(--icon-secondary-filter);
+}
+
+.social-icon:hover {
+  filter: var(--icon-hover-filter);
+}

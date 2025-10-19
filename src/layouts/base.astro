@@ -171,7 +171,7 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
             </form>
             {
               channel?.descriptionHTML && channel?.descriptionHTML.length > 0 && (
-                <div class="aside-description text-[12px] text-gray-600 dark:text-gray-400  p-3 rounded-lg shadow-sm leading-5" set:html={channel?.descriptionHTML} />
+                <div class="aside-description text-[12px] text-gray-600 dark:text-gray-400  p-3 rounded-lg leading-5" set:html={channel?.descriptionHTML} />
               )
             }
             <div class="copyright-wrap">
