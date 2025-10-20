@@ -13,14 +13,17 @@ locale && dayjs.locale(locale)
 const { SITE_URL } = Astro.locals
 const { post, isItem, channel: channelInfo } = Astro.props
 
+
 const channel = getEnv(import.meta.env, Astro, 'CHANNEL')
 const COMMENTS = getEnv(import.meta.env, Astro, 'COMMENTS')
 const staticProxy = getEnv(import.meta.env, Astro, 'STATIC_PROXY') ?? '/static/'
+const channelName = channelInfo?.title ?? getEnv(import.meta.env, Astro, 'CHANNEL_NAME') ?? channel ?? 'Channel'
+const AUTHOR = getEnv(import.meta.env, Astro, 'AUTHOR') ?? channelName
+
 
 const avatarSrc = channelInfo?.avatar?.startsWith('http')
   ? `${staticProxy}${channelInfo?.avatar}`
   : (channelInfo?.avatar ?? voidFile.src)
-const channelName = channelInfo?.title ?? getEnv(import.meta.env, Astro, 'CHANNEL_NAME') ?? channel ?? 'Channel'
 
 const datetime = dayjs(post.datetime).tz(timezone)
 const dateLabel = datetime.format('YYYY年MM月DD日 HH:mm dddd')
@@ -35,7 +38,7 @@ const timeago = datetime.isBefore(dayjs().subtract(1, 'w')) ? datetime.format('H
     </figure>
     <div class="moment-content flex-1 flex flex-col gap-3">
       <div class="moment-header flex items-center gap-2 mb-1">
-        <span class="moment-author text-base font-semibold text-[var(--foreground-color)]">{channelName}</span>
+        <span class="moment-author text-base font-semibold text-[var(--foreground-color)]">{AUTHOR}</span>
       </div>
       {post.content.length > 0 && <div class={`moment-text content prose prose-green max-w-none m-0 text-sm leading-relaxed text-[var(--foreground-color)] break-words`} set:html={post.content} />}
       <!-- {
