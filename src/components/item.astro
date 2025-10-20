@@ -41,8 +41,9 @@ const timeago = datetime.isBefore(dayjs().subtract(1, 'w')) ? datetime.format('H
         <span class="moment-author text-base font-semibold text-[var(--foreground-color)]">{AUTHOR}</span>
       </div>
       {post.content.length > 0 && <div class={`moment-text content prose prose-green max-w-none m-0 text-sm leading-relaxed text-[var(--foreground-color)] break-words`} set:html={post.content} />}
-      <!-- {
-        post.tags.length > 0 && (
+      {
+        // TODO item tags shown
+        post.tags.length > 0 && isItem && (
           <div class="moment-tags flex gap-2 flex-wrap mt-1">
             {post.tags.map((tag) => (
               <a href={`/search/%23${tag}`} title={tag} class="moment-tag bg-gray-100 text-[var(--link-color)] rounded-full px-3 py-1 text-xs no-underline transition-all duration-200 hover:bg-[rgba(7,193,96,0.12)] hover:text-[var(--highlight-color)] hover:no-underline">
@@ -51,7 +52,7 @@ const timeago = datetime.isBefore(dayjs().subtract(1, 'w')) ? datetime.format('H
             ))}
           </div>
         )
-      } -->
+      }
 
       <div class="moment-footer flex items-center gap-2 mt-3 justify-start">
         <a href={`${SITE_URL}posts/${post.id}`} title={timeago} class="moment-time-link text-[var(--secondary-color)] text-xs no-underline inline-flex items-center py-1 hover:text-[var(--highlight-color)]">
@@ -67,13 +68,14 @@ const timeago = datetime.isBefore(dayjs().subtract(1, 'w')) ? datetime.format('H
               async
               src="https://telegram.org/js/telegram-widget.js"
               data-telegram-discussion={`${channel}/${post.id}`}
-              data-comments-limit="50"
+              data-comments-limit="5"
               data-colorful="1"
-              data-color="454545"
+              data-color="FFFFFF"
             />
           </div>
         )
       }
+      <!-- TODO dark mode support -->
     </div>
   </div>
 </div>
