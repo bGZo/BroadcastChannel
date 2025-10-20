@@ -6,6 +6,7 @@ import netlify from '@astrojs/netlify'
 import node from '@astrojs/node'
 import { provider } from 'std-env'
 import sentry from '@sentry/astro'
+import partytown from '@astrojs/partytown'
 
 const providers = {
   vercel: vercel({
@@ -45,6 +46,8 @@ export default defineConfig({
           }),
         ]
       : []),
+      // https://shinya.click/fiddling/astro-google-tag-manager/
+      partytown({ config: { forward: ['dataLayer.push', 'gtag'] } })
   ],
   vite: {
     ssr: {

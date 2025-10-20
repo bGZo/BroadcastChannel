@@ -4,6 +4,7 @@
     "": {
       "name": "broadcast-channel",
       "dependencies": {
+        "@astrojs/partytown": "^2.1.4",
         "@astrojs/rss": "^4.0.7",
         "@astrojs/tailwind": "^6.0.2",
         "@sentry/astro": "^8.27.0",
@@ -56,6 +57,8 @@
     "@astrojs/netlify": ["@astrojs/netlify@6.5.13", "", { "dependencies": { "@astrojs/internal-helpers": "0.7.4", "@astrojs/underscore-redirects": "1.0.0", "@netlify/blobs": "^10.0.11", "@netlify/functions": "^4.2.7", "@netlify/vite-plugin": "^2.6.1", "@vercel/nft": "0.30.1", "esbuild": "^0.25.0", "tinyglobby": "^0.2.15", "vite": "^6.3.6" }, "peerDependencies": { "astro": "^5.7.0" } }, "sha512-UMZlW/QTSggmSr7zORj/e2dbj+7kh0yPQqIFdbWKfLnPCOQ4pyLA5+BvMPF6a7j1NDDnL72El0ilRobUXpp5Tg=="],
 
     "@astrojs/node": ["@astrojs/node@9.5.0", "", { "dependencies": { "@astrojs/internal-helpers": "0.7.4", "send": "^1.2.0", "server-destroy": "^1.0.1" }, "peerDependencies": { "astro": "^5.14.3" } }, "sha512-x1whLIatmCefaqJA8FjfI+P6FStF+bqmmrib0OUGM1M3cZhAXKLgPx6UF2AzQ3JgpXgCWYM24MHtraPvZhhyLQ=="],
+
+    "@astrojs/partytown": ["@astrojs/partytown@2.1.4", "", { "dependencies": { "@qwik.dev/partytown": "^0.11.0", "mrmime": "^2.0.1" } }, "sha512-loUrAu0cGYFDC6dHVRiomdsBJ41VjDYXPA+B3Br51V5hENFgDSOLju86OIj1TvBACcsB22UQV7BlppODDG5gig=="],
 
     "@astrojs/prism": ["@astrojs/prism@3.3.0", "", { "dependencies": { "prismjs": "^1.30.0" } }, "sha512-q8VwfU/fDZNoDOf+r7jUnMC2//H2l0TuQ6FkGJL8vD8nw/q5KiL3DS1KKBI3QhI9UQhpJ5dc7AtqfbXWuOgLCQ=="],
 
@@ -440,6 +443,8 @@
     "@poppinss/exception": ["@poppinss/exception@1.2.2", "", {}, "sha512-m7bpKCD4QMlFCjA/nKTs23fuvoVFoA83brRKmObCUNmi/9tVu8Ve3w4YQAnJu4q3Tjf5fr685HYIC/IA2zHRSg=="],
 
     "@prisma/instrumentation": ["@prisma/instrumentation@5.22.0", "", { "dependencies": { "@opentelemetry/api": "^1.8", "@opentelemetry/instrumentation": "^0.49 || ^0.50 || ^0.51 || ^0.52.0 || ^0.53.0", "@opentelemetry/sdk-trace-base": "^1.22" } }, "sha512-LxccF392NN37ISGxIurUljZSh1YWnphO34V5a0+T7FVQG2u9bhAXRTJpgmQ3483woVhkraQZFF7cbRrpbw/F4Q=="],
+
+    "@qwik.dev/partytown": ["@qwik.dev/partytown@0.11.2", "", { "dependencies": { "dotenv": "^16.4.7" }, "bin": { "partytown": "bin/partytown.cjs" } }, "sha512-795y49CqBiKiwKAD+QBZlzlqEK275hVcazZ7wBPSfgC23L+vWuA7PJmMpgxojOucZHzYi5rAAQ+IP1I3BKVZxw=="],
 
     "@rollup/pluginutils": ["@rollup/pluginutils@5.3.0", "", { "dependencies": { "@types/estree": "^1.0.0", "estree-walker": "^2.0.2", "picomatch": "^4.0.2" }, "peerDependencies": { "rollup": "^1.20.0||^2.0.0||^3.0.0||^4.0.0" }, "optionalPeers": ["rollup"] }, "sha512-5EdhGZtnu3V88ces7s53hhfK5KSASnJZv8Lulpc04cWO3REESroJXg73DFsOmgbU2BhwV0E20bu2IDZb3VKW4Q=="],
 

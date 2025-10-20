@@ -48,6 +48,8 @@ const seoParams = {
   },
 }
 
+const GOOGLE_ANALYSE = getEnv(import.meta.env, Astro, 'GOOGLE_ANALYSE')
+
 const GOOGLE_SEARCH_SITE = getEnv(import.meta.env, Astro, 'GOOGLE_SEARCH_SITE')
 const searchAction = GOOGLE_SEARCH_SITE ? 'https://www.google.com/search' : '/search/result'
 
@@ -102,6 +104,17 @@ const navs = (getEnv(import.meta.env, Astro, 'NAVS') || '')
       }}
       {...seoParams}
     />
+    { GOOGLE_ANALYSE && (
+      <script is:inline src={`https://www.googletagmanager.com/gtag/js?id=${GOOGLE_ANALYSE}`} type="text/partytown"></script>
+      <script is:inline define:vars={{ GOOGLE_ANALYSE }} type="text/partytown">
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () {
+              dataLayer.push(arguments);
+          };
+        window.gtag('js', new Date());
+        window.gtag('config', GOOGLE_ANALYSE);
+      </script>
+      )}
     <Fragment set:html={HEADER_INJECT} />
   </head>
 

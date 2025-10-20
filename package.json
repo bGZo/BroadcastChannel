@@ -13,6 +13,7 @@
     "postinstall": "test -d .git && true"
   },
   "dependencies": {
+    "@astrojs/partytown": "^2.1.4",
     "@astrojs/rss": "^4.0.7",
     "@astrojs/tailwind": "^6.0.2",
     "@sentry/astro": "^8.27.0",
