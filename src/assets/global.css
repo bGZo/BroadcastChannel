@@ -94,6 +94,20 @@ html {
   }
 }
 
+@media screen and (max-width: 370px) {
+  .shadow-card {
+    box-shadow: none;
+  }
+
+  #main-container {
+    padding: 0rem;
+  }
+
+  #aside-container {
+    padding: 1rem;
+  }
+}
+
 @media screen and (min-width: 768px) {
   #aside-container {
     height: 100svh;
