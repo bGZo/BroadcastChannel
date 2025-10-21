@@ -4,6 +4,12 @@
 
 ## ✨ Features
 
+> [!NOTE]
+> There're some points enhanced in this forked version:
+> 1. Theme customized based on Sepia template, like dark mode support.
+> 2. Google analyses support added.
+> 3. Turn `npm` package management to Bun, and upgraded dependencies.
+
 - **Turn your Telegram Channel into a MicroBlog**
 - **SEO friendly** `/sitemap.xml`
 - **0 JS on the browser side**
