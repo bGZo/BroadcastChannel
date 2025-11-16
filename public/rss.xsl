@@ -44,21 +44,21 @@
                      </a>
                      website.
                   </p>
-                  <p class="text-body text-sm hidden" id="subscribe-links">
+                  <!-- <p class="text-body text-sm" id="subscribe-links">
                      You can subscribe this RSS feed by
-                     <a class="link intent-neutral variant-animated font-bold" title="Feedly" data-href="https://feedly.com/i/subscription/feed/" target="_blank" rel="noopener noreferrer">Feedly</a>
+                     <a class="link intent-neutral variant-animated font-bold" title="Feedly" href="https://feedly.com/i/subscription/feed/" target="_blank" rel="noopener noreferrer">Feedly</a>
                      ,
-                     <a class="link intent-neutral variant-animated font-bold" title="Inoreader" data-href="https://www.inoreader.com/feed/" target="_blank" rel="noopener noreferrer">Inoreader</a>
+                     <a class="link intent-neutral variant-animated font-bold" title="Inoreader" href="https://www.inoreader.com/feed/" target="_blank" rel="noopener noreferrer">Inoreader</a>
                      ,
-                     <a class="link intent-neutral variant-animated font-bold" title="Newsblur" data-href="https://www.newsblur.com/?url=" target="_blank" rel="noopener noreferrer">Newsblur</a>
+                     <a class="link intent-neutral variant-animated font-bold" title="Newsblur" href="https://www.newsblur.com/?url=" target="_blank" rel="noopener noreferrer">Newsblur</a>
                      ,
-                     <a class="link intent-neutral variant-animated font-bold" title="Follow" data-href="follow://add?url=" rel="noopener noreferrer">Follow</a>
+                     <a class="link intent-neutral variant-animated font-bold" title="Follow" href="follow://add?url=" rel="noopener noreferrer">Follow</a>
                      ,
                      <a class="link intent-neutral variant-animated font-bold" title="RSS Reader" data-href="feed:" data-raw="true" rel="noopener noreferrer">RSS Reader</a>
                      or
                      <a class="link intent-neutral variant-animated font-bold" title="{$title} 's feed source" data-href="" data-raw="true" rel="noopener noreferrer">View Source</a>
                      .
-                  </p>
+                  </p> -->
                   <script>document.addEventListener('DOMContentLoaded', function () {
                 document.querySelectorAll('a[data-href]').forEach(function (a) {
                   const url = new URL(location.href)
@@ -70,7 +70,7 @@
                     a.href = a.getAttribute('data-href') + encodeURIComponent(feed)
                   }
                 })
-                document.getElementById('subscribe-links').classList.remove('hidden')
+                <!-- document.getElementById('subscribe-links').classList.remove('hidden') -->
               })</script>
                </header>
                <hr class="my-6" />
@@ -97,6 +97,13 @@
                                        <xsl:choose>
                                           <xsl:when test="description">
                                              <xsl:value-of select="description" disable-output-escaping="yes" />
+                                          </xsl:when>
+                                       </xsl:choose>
+                                    </p>
+                                    <p class="my-2">
+                                       <xsl:choose>
+                                          <xsl:when test="content:encoded" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+                                             <xsl:value-of select="content:encoded" disable-output-escaping="yes" />
                                           </xsl:when>
                                        </xsl:choose>
                                     </p>

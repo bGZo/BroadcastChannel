@@ -23,9 +23,12 @@ export async function GET(Astro) {
     trailingSlash: false,
     stylesheet: getEnv(import.meta.env, Astro, 'RSS_BEAUTIFY') ? '/rss.xsl' : undefined,
     items: posts.map(item => ({
+      // description: sanitizeHtml(item.title || item.content || '', {
+      //     allowedTags: [],
+      //     allowedAttributes: {},
+      //   }),
       link: `posts/${item.id}`,
-      title: item.title,
-      description: item.description,
+      title: item.id,
       pubDate: new Date(item.datetime),
       content: sanitizeHtml(item.content, {
         allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img', 'video', 'audio']),
